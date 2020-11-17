@@ -14,3 +14,9 @@ Snake and ladder is console based game in which maximum 4 players can play the g
 9. If any player reachs at the end ```100``` then that player win's the game 🐍🎲.
 10. Game Ends 🐍🎲.
 
+    >### Rules:
+      1. Both the players are at starting position i.e. 0. 
+      2. If players reach at the bottom of a ladder, you can move up to the top of the ladder.
+      3. If playes reach on the head of a snake, you must slide down to the bottom of the snake.
+      4. The first player to get to the FINAL position (100) is the winner.
+      5. Press enter to roll the dice.
