@@ -1,4 +1,3 @@
-
 import time
 import random
 import sys
@@ -8,7 +7,7 @@ Delay = 1
 Cells = 100
 Dice_Faces = 6
 
-# 'key' to 'value'
+# Snakes 'key' to 'value'
 snakes = {
     8: 4,
     18: 1,
@@ -44,9 +43,10 @@ ladders = {
     88: 91
 }
 
-def welcome_msg():
+# function for greeting and rules
+def Rules():
     rules = """
-    Welcome to Snake and Ladder Game.
+    Welcome to Snake and Ladder Console Game.
     Rules:
       1. Both the players are at starting position i.e. 0. 
       2. If players reach at the bottom of a ladder, you can move up to the top of the ladder.
@@ -57,7 +57,7 @@ def welcome_msg():
     """
     print(rules)
 
-# function fro
+# function for selecting no players
 def no_of_players():
     count = 0
     while count < 1:
@@ -67,7 +67,7 @@ def no_of_players():
         else:
             print("Maximum no of players is 4, Please select in-between !")
 
-#function for taking players names
+# function for taking players names
 def get_player_names():
 
     player1_name = None
@@ -78,10 +78,19 @@ def get_player_names():
     while not player2_name:
         player2_name = input("Please enter a valid name for second player: ").strip()
 
-    print("\nMatch will be played between '" + player1_name + "' and '" + player2_name + "'\n")
-    return player1_name, player2_name
+    player3_name = None
+    while not player3_name:
+        player3_name = input("Please enter a valid name for third player: ").strip()
 
-#Function for dice display
+    player4_name = None
+    while not player4_name:
+        player4_name = input("Please enter a valid name for forth player: ").strip()
+
+    print("\nMatch will be played between '" + player1_name + "' , '" + player2_name + "' , '" + player3_name + "' and '" + player4_name + "'\n")
+    return player1_name, player2_name, player3_name, player4_name
+
+
+# function for dice display
 def get_dice_value():
     time.sleep(Delay)
     dice_value = random.randint(1, Dice_Faces)
@@ -134,17 +143,17 @@ def get_dice_value():
         print("Its a " + str(dice_value))
         return dice_value
         
-# Function for snake bite
+# function for snake bite
 def got_snake_bite(old_value, current_value, player_name):
     print("\n" + "Ohh no! :(" + " ~~~~~~~~8>")
     print("\n" + player_name + " got a snake bite. Down from " + str(old_value) + " to " + str(current_value))
 
-# Function for ladder jump
+# function for ladder jump
 def got_ladder_jump(old_value, current_value, player_name):
-    print("\n" + "Hurrah :)" + " ||||||||||")
+    print("\n" + "Bale Bale :)" + " ||||||||||")
     print("\n" + player_name + " climbed the ladder from " + str(old_value) + " to " + str(current_value))
 
-# Function for dice movement
+# function for dice movement
 def snake_ladder(player_name, current_value, dice_value):
     time.sleep(Delay)
     old_value = current_value
@@ -168,7 +177,7 @@ def snake_ladder(player_name, current_value, dice_value):
 
     return final_value
 
-# Function that check and greet the winner
+# function that check and greet the winner
 def check_win(player_name, position):
     time.sleep(Delay)
     if Cells == position:
@@ -177,20 +186,21 @@ def check_win(player_name, position):
         print("\nThank you for playing the game.\n\n")
         sys.exit(1)
 
-# Code start from here...
+# function to game Code start from here...
 def start():
-    welcome_msg()
+    Rules()
     time.sleep(Delay)
-    player1_name, player2_name = get_player_names()
+    player1_name, player2_name, player3_name, player4_name = get_player_names()
     time.sleep(Delay)
 
     player1_current_position = 0
     player2_current_position = 0
+    player3_current_position = 0
+    player4_current_position = 0
 
     while True:
         time.sleep(Delay)
         input_1 = input("\n" + player1_name + ": " + "Your turn." + " Press the enter to roll dice: ")
-        print("\nRolling dice...")
         dice_value = get_dice_value()
         time.sleep(Delay)
         print(player1_name + " moving....")
@@ -199,13 +209,28 @@ def start():
         check_win(player1_name, player1_current_position)
 
         input_2 = input("\n" + player2_name + ": " + "Your turn." + " Press the enter to roll dice: ")
-        print("\nRolling dice...")
         dice_value = get_dice_value()
         time.sleep(Delay)
         print(player2_name + " moving....")
         player2_current_position = snake_ladder(player2_name, player2_current_position, dice_value)
 
         check_win(player2_name, player2_current_position)
+
+        input_3 = input("\n" + player3_name + ": " + "Your turn." + " Press the enter to roll dice: ")
+        dice_value = get_dice_value()
+        time.sleep(Delay)
+        print(player2_name + " moving....")
+        player3_current_position = snake_ladder(player3_name, player3_current_position, dice_value)
+
+        check_win(player3_name, player3_current_position)
+
+        input_4 = input("\n" + player4_name + ": " + "Your turn." + " Press the enter to roll dice: ")
+        dice_value = get_dice_value()
+        time.sleep(Delay)
+        print(player4_name + " moving....")
+        player4_current_position = snake_ladder(player4_name, player4_current_position, dice_value)
+
+        check_win(player4_name, player4_current_position)
 
 
 if __name__ == "__main__":

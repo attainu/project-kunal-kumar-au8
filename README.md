@@ -1,5 +1,7 @@
 # Snake 🐍 and Ladder Console Game🎲
 
+>### Programming Language Used - Python3
+
 Snake and ladder is console based game in which maximum 4 players can play the game at a same time. 
 
 >### Following are the steps to play the game :
